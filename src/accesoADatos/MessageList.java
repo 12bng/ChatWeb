@@ -1,27 +1,34 @@
-package modelo;
+package accesoADatos;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-import accesoADatos.PeticionesDB;
+import modelo.Message;
+import modelo.User;
 
 public class MessageList {
 	private MessageList myMessageList = null;
 	private ArrayList<Message> messageList = null;
 	
-	public ArrayList<Message> getMessageList() {
+	private MessageList() {
+		
+	}
+	
+	public MessageList getMessageList() {
 		if(myMessageList==null) {
 			myMessageList = new MessageList();
 			messageList= new ArrayList<Message>();
 		}
-		return messageList;
+		return myMessageList;
 	}
-	public void addMessage(User user, String message) {
-		//TODO
+	public void addMessage(Message message) {
+		messageList.add(message);
 	}
+	
 	public Message getLastMessage() {
 		return messageList.get(messageList.size());
 	}
+	
 	public void loadMessageList() {
 		ResultSet rs=PeticionesDB.getPublicMessages();
 		try {

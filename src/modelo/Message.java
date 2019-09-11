@@ -29,7 +29,7 @@ public class Message {
 		dia =calendario.get(Calendar.DAY_OF_MONTH);
 		mes = calendario.get(Calendar.MONTH);
 		ano = calendario.get(Calendar.YEAR);
-		return date= dia + "/" + mes + "/" + ano+" - "+hora + ":" + minutos + ":" + segundos;
+		return date= ano + "/" + mes + "/" + dia+" "+hora + ":" + minutos + ":" + segundos;
 		
 	}
 

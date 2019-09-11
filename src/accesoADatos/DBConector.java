@@ -20,9 +20,9 @@ public class DBConector {
     // init properties object
     private static Properties properties;
 
-//    public DBConector() {
-//    	connect();
-//    }
+    private DBConector() {
+    	connect();
+   }
     
     //singleton
     private static DBConector connector= null;
@@ -30,7 +30,7 @@ public class DBConector {
     public static DBConector getDBConector() {
     	if(connector==null) {
     		connector = new DBConector();
-    		connect();
+    		//connect();
     	}
     	return connector;
     }

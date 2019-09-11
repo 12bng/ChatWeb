@@ -23,6 +23,13 @@ public class User {
 	public String getPassword() {
 		return password;
 	}
+	public boolean setNewPassword(String password, String newPassword) {
+		if(this.password==password) {
+			this.password=newPassword;
+			return true;
+		}
+		return false;
+	}
 	
 	
 }
