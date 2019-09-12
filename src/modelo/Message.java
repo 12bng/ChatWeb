@@ -4,20 +4,26 @@ import java.util.Calendar;
 
 public class Message {
 	private String date;
-	private String sender;
+	private String userName;
+	private Integer idSender;
 	private String message;
 	
 	
-	public Message(String date, String sender, String message) {
+	public Message(String date, String user, Integer sender, String message) {
 		this.date = date;
-		this.sender = sender;
+		this.idSender = sender;
 		this.message = message;
+		this.userName = user;
+		
+	}
+	public Message() {
 	}
 	
-	public void NewMessage(String sender, String message) {
+	public void NewMessage(Integer sender, String senderName, String message) {
 		this.date = setDate();
-		this.sender = sender;
+		this.idSender = sender;
 		this.message = message;
+		this.userName = senderName;
 	}
 	
 	private String setDate() {
@@ -31,6 +37,18 @@ public class Message {
 		ano = calendario.get(Calendar.YEAR);
 		return date= ano + "/" + mes + "/" + dia+" "+hora + ":" + minutos + ":" + segundos;
 		
+	}
+	public String getDate() {
+		return date;
+	}
+	public Integer getIdSender() {
+		return idSender;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public String getUsername() {
+		return userName;
 	}
 
 }

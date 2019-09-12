@@ -5,12 +5,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import modelo.Message;
 import modelo.User;
 
 
 public class PeticionesDB {
-	private DBConector conector = DBConector.getDBConector();
-	private Connection conn = DBConector.connect();
+	private static DBConector conector = DBConector.getDBConector();
+	private static Connection conn = conector.connect();
 	
 	
 	public static ResultSet getPublicMessages() {
@@ -29,10 +30,22 @@ public class PeticionesDB {
 					return new User(rs.getInt("id"), name, password);
 				}
 			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return null;
 		}
 		return null;
+	}
+	public static void addPublicMessage(Message mensaje) {
+		String sql = "INSERT INTO mensajesgeneral (mensaje, idusuario) VALUES (?, ?)";
+		try (PreparedStatement ps = conn.prepareStatement(sql)) {
+			ps.setString(1, mensaje.getMessage());
+			ps.setInt(2, mensaje.getIdSender());
+			ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
